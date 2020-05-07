@@ -1,4 +1,5 @@
 <view>
-首页
-  <view class="iconfont icon-tubiao14"></view>
-</view>
+<!-- 首页
+  <view class="iconfont icon-tubiao14"></view> -->
+  <searchInput/>
+</view>  

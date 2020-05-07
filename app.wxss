@@ -5,3 +5,7 @@ page,view,text,swiper,swiper-item,image,navigator{
   margin:0;
   box-sizing:border-box;
 }
+
+page{
+  --themeColor:#EA434F
+}
