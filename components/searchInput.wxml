@@ -1,6 +1,6 @@
 <view class="search_input">
     <navigator  open-type="navigate">
-        搜索
+        <text>搜索</text>
     </navigator>
 </view>
   

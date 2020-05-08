@@ -1,0 +1,9 @@
+-- 接口
+    https://www.showdoc.cc/128719739414963?page_id=2513235043485226
+
+-- 
+    - 配置tabbar
+    - 添加searchinput 组件
+    - css样式声明
+    - 封装promise
+    - swiper/分类导航，数据获取

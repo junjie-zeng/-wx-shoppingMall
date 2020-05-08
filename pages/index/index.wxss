@@ -1,0 +1,18 @@
+.index_swiper swiper {
+  width: 750rpx;
+  height: 340rpx;
+}
+.index_swiper swiper image {
+  width: 100%;
+}
+.index_nav {
+  width: 750rpx;
+  display: flex;
+}
+.index_nav navigator {
+  flex: 1;
+  padding: 20px;
+}
+.index_nav navigator image {
+  width: 100%;
+}
