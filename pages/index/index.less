@@ -19,3 +19,38 @@
         }
     }
 }
+
+.index_floor{
+    .floor_group{
+        .floor_title{
+            padding: 10rpx 0;
+            image{
+                width: 100%;
+            }
+        }
+        .floor_list{
+            overflow: hidden;
+            navigator{
+                float: left;
+                width: 33.33%;
+                // 针对后四张图片
+                &:nth-last-child(-n+4){
+                    // 原图的宽高 232*386
+                    //232/386=33.33vw/height
+                    // 第一张图片的高度 height:33.33vw*386/232
+                    height:33.33vw * 386 / 232 / 2;
+                    border-left: solid 10rpx #fff;
+                }
+                // 针对2 3两个超链接
+                &:nth-child(2),
+                &:nth-child(3){
+                    border-bottom: solid 10rpx #fff;
+                }
+                image{
+                    width: 100%;
+                    height:100%;
+                }
+            }
+        }
+    }
+}

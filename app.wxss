@@ -7,5 +7,10 @@ page,view,text,swiper,swiper-item,image,navigator{
 }
 
 page{
-  --themeColor:#EA434F
+  --themeColor:#EA434F;
+  font-size: 28rpx;
+}
+
+image{
+  width: 100%;
 }

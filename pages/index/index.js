@@ -12,7 +12,10 @@ Page({
   data: {
     // 轮播图数据
     swiperList:[],
-    navList:[]
+    // 导航 
+    navList:[],
+    // 楼层数据
+    floorList:[]
   },
 
   /**
@@ -21,7 +24,8 @@ Page({
   onLoad: function (options) {
     this.getSwiperList()
     this.getNavList()
-    console.log(this.data)
+    this.getFloorList()
+    //console.log(this.data)
   },
   // 轮播图数据请求
   getSwiperList(){
@@ -42,6 +46,17 @@ Page({
     }).then((res)=>{
       this.setData({
         navList:res.data.message
+      })
+    })
+  }
+  ,
+  // 获取楼层数据
+  getFloorList(){
+    request({
+      url:'https://api-hmugo-web.itheima.net/api/public/v1/home/floordata'
+    }).then((res)=>{
+      this.setData({
+        floorList:res.data.message
       })
     })
   }
