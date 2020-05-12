@@ -5,17 +5,21 @@
         <!-- 左侧菜单 -->
         <scroll-view class="left_menu" scroll-y>
             <view class="menu_item {{index === currentIndex ? 'active':''}}" 
-            wx:for ="{{letMenuList}}"
-            wx:key="*this">
-            {{item}}
-            </view>
+                  wx:for ="{{leftMenuList}}"
+                  wx:key="*this"
+                  bindtap="selectCaegory"
+                  data-index = "{{index}}">
+                  
+                    {{item}}
+                  </view>
         </scroll-view>
         <!-- 右侧菜单 -->
-        <scroll-view class="right_content" scroll-y>
+        <scroll-view class="right_content" scroll-y  scroll-top="{{scrollTop}}">
             <view class="goods_group" 
             wx:for = "{{rightContent}}"
             wx:for-item="item1"
-            wx:for-index="index1">
+            wx:for-index="index1"
+            wx:key = "cat_id">
 
                 <view class="goods_title">
                     <text class="delimiter">/</text>
