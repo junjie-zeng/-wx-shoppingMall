@@ -11,5 +11,19 @@
 -- 
     - 楼层 （楼层样式）
     - 分类
-        获取数据--数据过滤
-        （样式）
+        - 获取数据--数据过滤
+        - （样式）
+        - 数据获取
+        - wx.getStorageSync wx.setSotrageSync 本地存储
+
+-- 
+    - 接口调整
+    - es7 async 
+      - 部分机型会有兼容性问题，在不考虑兼容性问题下使用
+      - 配置
+          - 下载 runtime.js
+          - 放入lib文件夹
+          - 在需要使用async页面引入（只需引入） import regeneratorRuntime from'../../utils/runtime.js'
+
+    - 商品列表跳转
+      - 踩坑：忘记了navigate，不能调tabbar

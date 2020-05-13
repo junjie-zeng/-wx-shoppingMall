@@ -1,4 +1,5 @@
 import {request} from '../../request/index.js'
+import regeneratorRuntime from'../../utils/runtime.js'
 // pages/category/index.js
 Page({
 
@@ -43,13 +44,15 @@ Page({
     
     if(!this.Cates.length){
       console.log("没有数据，获取")
-      this.getCates()
+      //this.getCates() // promise方法
+      this.getCates1() // async await方法
     }else{
       var data = wx.getStorageSync("cates")
       // 如果当前时间-存储的时间大于10毫秒则重新发送请求
       if (Date.now - data.time > 1000*10){
         console.log("数据过期，获取")
-        this.getCates()
+        //this.getCates() // promise方法
+        this.getCates1() // async await方法
       }else{
         console.log("使用缓存中的数据")
          // 保存数据进行处理
@@ -68,10 +71,27 @@ Page({
     
     
   },
-  // 获取分类数据
+
+  // async await 方法 获取分类数据
+  async getCates1() {
+    var res = await request({url: '/categories'})
+    this.Cates = res.data.message
+    // 将数据保存在缓存中
+    wx.setStorageSync("cates", { time: Date.now(), data: this.Cates })
+    // 左侧菜单数据
+    let leftMenuList = this.Cates.map((v => v.cat_name))
+    // 右侧的商品数据
+    let rightContent = this.Cates[0].children;
+    //console.log(rightContent)
+    this.setData({
+      leftMenuList,
+      rightContent
+    })
+  },
+  // promise 方法 获取分类数据
   getCates(){
     request({
-      url:'https://api-hmugo-web.itheima.net/api/public/v1/categories',
+      url:'/categories',
      
     }).then((res)=>{
       //console.log(res)

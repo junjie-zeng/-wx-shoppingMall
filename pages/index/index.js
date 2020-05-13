@@ -30,7 +30,7 @@ Page({
   // 轮播图数据请求
   getSwiperList(){
     request({
-      url:'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata'
+      url:'/home/swiperdata'
     }).then((res)=>{
       //console.log(res)
       this.setData({
@@ -42,7 +42,7 @@ Page({
   // 分类导航数据请求
   getNavList(){
     request({
-      url:'https://api-hmugo-web.itheima.net/api/public/v1/home/catitems'
+      url:'/home/catitems'
     }).then((res)=>{
       this.setData({
         navList:res.data.message
@@ -53,7 +53,7 @@ Page({
   // 获取楼层数据
   getFloorList(){
     request({
-      url:'https://api-hmugo-web.itheima.net/api/public/v1/home/floordata'
+      url:'/home/floordata'
     }).then((res)=>{
       this.setData({
         floorList:res.data.message
