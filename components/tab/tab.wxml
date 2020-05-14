@@ -1,0 +1,13 @@
+<view class="tabs">
+  <view class="tabs_title">
+    <!-- 遍历每一项 -->
+    <view class = "title_item {{item.isActive ? 'active':''}}" wx:for = "{{tabs}}" wx:key = "id" bindtap="hanldItemTabsChange" data-index = "{{index}}">
+      {{item.value}}
+    </view>
+  </view>
+
+  <view class="tabs_content">
+    <slot></slot>
+  </view>
+
+</view>

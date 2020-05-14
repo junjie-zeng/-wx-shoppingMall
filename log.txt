@@ -26,4 +26,8 @@
           - 在需要使用async页面引入（只需引入） import regeneratorRuntime from'../../utils/runtime.js'
 
     - 商品列表跳转
-      - 踩坑：忘记了navigate，不能调tabbar
+      - 踩坑：忘记了navigate，不能跳tabbar
+
+    - 自定义tabs组件
+    - 获取商品列表/渲染列表
+    - 处理没图片的场景
