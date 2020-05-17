@@ -54,7 +54,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -75,6 +75,13 @@
 					"name": "pages/goods_list/index",
 					"pathName": "商品列表",
 					"query": "catId=10",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/goods_detail/index",
+					"query": "goods_id=47868",
 					"scene": null
 				}
 			]
