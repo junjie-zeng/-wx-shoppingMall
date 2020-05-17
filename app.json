@@ -37,7 +37,7 @@
           "selectedIconPath": "style/img/category.png"
         },
         {
-          "pagePath": "pages/order/index",
+          "pagePath": "pages/cart/index",
           "text": "购物车",
           "iconPath": "style/img/_shopping.png",
           "selectedIconPath": "style/img/shopping.png"
