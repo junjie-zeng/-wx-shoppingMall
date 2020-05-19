@@ -1,2 +1,11 @@
-<!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<!-- 收获地址 -->
+<view class ="revice_address_row">
+    <view class = "address_btn">
+        <button class="default" type="primary" plain="default" bindtap = "handleChoosAddress">
+            获取收获地址
+        </button>
+                  
+    </view>
+      
+</view>
+  
