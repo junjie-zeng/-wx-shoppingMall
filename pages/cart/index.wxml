@@ -1,11 +1,19 @@
 <!-- 收获地址 -->
 <view class ="revice_address_row">
-    <view class = "address_btn">
+    <!-- 收获地址不存在显示按钮 -->
+    <view class = "address_btn" wx:if = "{{!address.userName}}">
         <button class="default" type="primary" plain="default" bindtap = "handleChoosAddress">
             获取收获地址
         </button>
                   
     </view>
-      
+    <!-- 收获地址存在则显示详细信息 -->
+    <view class = "user_info_row" wx:else>
+        <view class = "user_info">
+            <view>{{address.userName}}</view>
+            <view>{{address.all}}</view>
+        </view>
+        <view class = "user_phone">{{address.telNumber}}</view>
+    </view>
 </view>
   
