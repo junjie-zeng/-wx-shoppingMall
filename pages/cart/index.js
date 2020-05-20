@@ -56,6 +56,7 @@ Page({
       // 调用获取地址api
       const address = await chooseAddress()
       address.all = address.provinceName + address.cityName + address.countyName + address.detailInfo
+      // 本地存储收获地址
       wx.setStorageSync("address",address)
      
       console.log(address)
