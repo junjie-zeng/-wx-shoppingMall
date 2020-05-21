@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "searchInput":"./../components/searchInput/searchInput"
+    "searchInput":"../components/searchInput/searchInput"
   },
   "navigationBarTitleText":"商品分类",
   "navigationBarBackgroundColor":"#EA434F",
