@@ -16,6 +16,41 @@ import regeneratorRuntime from '../../utils/runtime.js'
       - onShow 
       - 获取本地存储的地址数据
       - 把数据设置给data中的变量
+    
+    -- onShow
+      - 1.回到商品详情页面 第一次添加属性的时候，手动添加属性
+        num =1
+        checked = true
+      - 2.获取缓存中购物车数组
+      - 3.把购物车数据填充到data中
+
+    -- 全选实现 数据展示
+      - 获取缓存中购物车数组
+      - 根据购物车中的商品数据，所有商品都被选中，checked=true （allChecked才被选中）
+
+    -- 总价格与总数量
+      - 1.商品被选中 才能拿来计算
+      - 2.获取购物车数组
+      - 3.遍历购物车数组
+      - 4.判断商品是否被选中
+      - 5.总价格 = 商品单价 * 商品数量
+      -   总数量 = 商品的数量
+      - 6.把计算后的价格重新设置到data与缓存中
+
+    -- 商品的选中   
+      - 绑定change事件
+      - 获取到被选中的商品对象
+      - 商品对象的选中状态取反
+      - 重新计算 总价格/数量/全选
+      - 重新填充到data与缓存中
+
+    -- 全选与反选
+      - 全选复选框绑定事件
+      - 获取data中全选变量 allChecked
+      - 直接取反 allChecked = !allChecked
+      - 遍历购物车数组让里面商品选中状态跟随 allChecked
+      - 把 购物车数组和allChecked 重新设置回data,把购物车重新设置回缓存
+      
 
 */
 Page({
@@ -24,7 +59,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address:{}
+    address:{},
+    cart:[],
+    allChecked:false,
+    totalPrice:0,
+    totalNum:0
   },
 
   /**
@@ -36,10 +75,16 @@ Page({
   onShow:function(){
     // 获取缓存中收获地址信息
     const address = wx.getStorageSync("address")
+    // 获取缓存中购物车数据
+    const cart = wx.getStorageSync("cart") || []
+    // 计算全选
+    //let allChecked = cart.length ? cart.every(v=>v.checked):false
+    this._setCart(cart)
     // 赋值
     this.setData({
       address
     })
+
   },
   // 使用async await 用法
   async handleChoosAddress(){
@@ -63,6 +108,57 @@ Page({
     }catch(err){
       console.log(err)
     }
+  },
+  handleItemChange(e){
+    // 获取被修改的商品id
+    const { goods_id } = e.currentTarget.dataset
+    // 获取购物车数组
+    const { cart } = this.data
+    // 找到被修改的商品对象
+    const index = cart.findIndex(v=>v.goods_id == goods_id) 
+    // 选中转态取反
+    cart[index].checked = !cart[index].checked
+    // 重新设置cart到data与缓存中
+    this._setCart(cart)
+   
+  },
+  // 全选/反选
+  handleCheckAll(){
+    // - 获取data中全选变量 allChecked
+    let { allChecked,cart } = this.data
+    // - 直接取反 allChecked = !allChecked
+    allChecked = !allChecked
+    // - 遍历购物车数组让里面商品选中状态跟随 allChecked
+    cart.forEach(v=>v.checked = allChecked)
+    // - 把 购物车数组和allChecked （计算总价格与数理） 重新设置回data,把购物车重新设置回缓存
+    this._setCart(cart)
+  },
+  // 封装设置cart函数
+  _setCart(cart){
+    let allChecked = true
+    let totalPrice = 0
+    let totalNum = 0
+    // 循环遍历
+    cart.forEach((item)=>{
+      // 只计算被选中的
+      if(item.checked){
+        // 商品总价格
+        totalPrice += item.goods_price * item.num
+        // 商品数量
+        totalNum += item.num
+      }else{
+        // 全选
+        allChecked = false
+      }
+    })
+    // 赋值
+    this.setData({
+      cart,
+      allChecked,
+      totalPrice,
+      totalNum
+    })
+    wx.setStorageSync("cart",cart)
   }
 
   // 获取收获地址(普通用法)
