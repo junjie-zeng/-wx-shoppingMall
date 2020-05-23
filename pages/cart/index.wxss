@@ -17,6 +17,7 @@
 }
 .cart_content {
   padding-top: 10rpx;
+  padding-bottom: 90rpx;
 }
 .cart_content .cart_title {
   padding: 20rpx;
@@ -25,11 +26,8 @@
   border-top: 1rpx solid currentColor;
   border-bottom: 1rpx solid currentColor;
 }
-.cart_content .cart_main {
-  padding-top: 10rpx;
-}
 .cart_content .cart_main .cart_item {
-  height: 150rpx;
+  padding: 5rpx;
   display: flex;
   border-bottom: 1rpx solid #ccc;
 }
@@ -78,7 +76,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1rpx solid #ccc;
+  border: solid 1px #ccc;
 }
 .cart_content .cart_main .cart_item .cart_info_wrap .goods_price_wrap .cart_num_tool .goods_num {
   width: 55rpx;
@@ -86,7 +84,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1px #ccc;
 }
 .footer_tool {
   position: fixed;

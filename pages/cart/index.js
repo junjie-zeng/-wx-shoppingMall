@@ -1,5 +1,5 @@
 
-import { getSetting,chooseAddress, openSetting} from '../../request/asyncWx'
+import { getSetting,chooseAddress, openSetting,showModal,showToast} from '../../request/asyncWx'
 import regeneratorRuntime from '../../utils/runtime.js'
 /*
     -- 获取收获地址
@@ -51,7 +51,23 @@ import regeneratorRuntime from '../../utils/runtime.js'
       - 遍历购物车数组让里面商品选中状态跟随 allChecked
       - 把 购物车数组和allChecked 重新设置回data,把购物车重新设置回缓存
       
+    -- 商品数量的编辑
+      - 给加好，减号绑定同一个点击事件，区分的关键在于自定义属性上
+        “+” +1
+        “-” -1
+      - 传递被点击的商品id goods_id
+      - 获取到data中的购物车数组，根据商品id获取需要被修改的商品对象
+      - 当购物车的数量=1同时用户点击了减号
+        弹窗提示（showModal） 询问用户是否要删除
+          1.确定 直接执行删除
+          2.取消 什么都不做
+      - 直接修改商品对象的数量 num
+      - 把cart数组 重新设置回 缓存中和data中 this._setCart()
 
+    -- 点击结算
+      - 判断有没有收获地址信息
+      - 判断用户有没有选购商品
+      - 经过以上验证跳转到支付页面
 */
 Page({
 
@@ -133,6 +149,49 @@ Page({
     // - 把 购物车数组和allChecked （计算总价格与数理） 重新设置回data,把购物车重新设置回缓存
     this._setCart(cart)
   },
+  // 商品数量的编辑功能
+  async handleItemNum(e){
+    // 获取传递过来的参数
+    const { operation,id } = e.currentTarget.dataset
+    // 获取购物车数组
+    let { cart } = this.data
+    // 找到需要修改商品的索引
+    const index = cart.findIndex(v=>v.goods_id === id)
+    // 判断是否要执行删除
+    if(cart[index].num === 1 && operation === -1){
+      // 弹窗提示
+      // wx.showModal({
+      //   title:'提示',
+      //   content:'您是否要删除？',
+      //   success:(res)=>{
+      //     if(res.confirm){
+      //       cart.splice(index,1)
+      //       // 设置回缓存和data中
+      //       this._setCart(cart)
+      //     }else{
+      //       console.log("取消了")
+      //     }
+      //   }
+      // })
+      // promise 形式
+      const  res = await showModal({content:'您是否要删除？'})
+      if(res.confirm){
+        cart.splice(index,1)
+        // 设置回缓存和data中
+        this._setCart(cart)
+      }else{
+        console.log("取消了")
+      }
+    }else{
+       // 进行修改数量
+      cart[index].num += operation
+      // 设置回缓存和data中
+      this._setCart(cart)
+    }
+
+
+   
+  },
   // 封装设置cart函数
   _setCart(cart){
     let allChecked = true
@@ -159,6 +218,26 @@ Page({
       totalNum
     })
     wx.setStorageSync("cart",cart)
+  },
+  // 点击结算
+  async handlePay(){
+    // 判断收获地址
+    const { address,totalNum } = this.data
+    if(!address.userName){
+      await showToast({title:"您还没有选择收获地址"})
+      return 
+    }
+
+    // 判断用户有没有选购商品
+    if(totalNum === 0 ){
+      await showToast({title:"您还没有选购商品"})
+      return 
+    }
+
+    // 跳转到支付页面
+    wx.navigateTo({
+      url:'/pages/pay/index'
+    })
   }
 
   // 获取收获地址(普通用法)

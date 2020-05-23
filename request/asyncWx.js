@@ -45,3 +45,35 @@ export const openSetting = ()=>{
         })
     })
 }
+
+// promise形式 showModal
+export const showModal = ({content})=>{
+    return new Promise((resolve,reject)=>{
+        wx.showModal({
+            title:'提示',
+            content:content,
+            success:(res)=>{
+              resolve(res)
+            },
+            fail:(err)=>{
+            reject(res)
+            }
+          })
+    })
+}
+
+// promise形式 showToast
+export const showToast = ({title})=>{
+    return new Promise((resolve,reject)=>{
+        wx.showToast({
+            title:title,
+            icon:'none',
+            success:(res)=>{
+              resolve(res)
+            },
+            fail:(err)=>{
+            reject(res)
+            }
+          })
+    })
+}
