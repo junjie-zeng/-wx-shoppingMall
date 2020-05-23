@@ -77,3 +77,37 @@ export const showToast = ({title})=>{
           })
     })
 }
+
+
+
+// promise形式 login
+
+export const login = ()=>{
+    return new Promise((resolve,reject)=>{
+        wx.login({
+            timeout:10000,
+            success:(res)=>{
+                resolve(res)
+            },
+            fail:(err)=>{
+                reject(err)
+            }
+        })
+    })
+}
+
+// promise形式 小程序支付 requestPayment
+
+export const requestPayment = (pay)=>{
+    return new Promise((resolve,reject)=>{
+        wx.requestPayment({
+            ...pay,
+            success:(res)=>{
+                resolve(res)
+            },
+            fail:(err)=>{
+                reject(err)
+            }
+        })
+    })
+}

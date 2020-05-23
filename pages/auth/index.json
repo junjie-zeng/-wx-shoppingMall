@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarTitleText": "支付授权",
+  "navigationBarBackgroundColor": "#EA434F",
+  "navigationBarTextStyle": "white"
 }
