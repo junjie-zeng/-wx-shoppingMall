@@ -56,7 +56,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -73,9 +73,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/goods_list/index",
-					"pathName": "商品列表",
+					"id": 2,
+					"name": "商品列表",
+					"pathName": "pages/goods_list/index ",
 					"query": "catId=10",
 					"scene": null
 				},
@@ -104,6 +104,13 @@
 					"id": -1,
 					"name": "授权",
 					"pathName": "pages/auth/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "登录",
+					"pathName": "pages/login/index ",
 					"query": "",
 					"scene": null
 				}

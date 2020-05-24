@@ -6,6 +6,13 @@
 let ajaxTimes = 0 // 调用时++ ，请求回来时—-，直到等于0时才将图标关闭
 
 export const request = (params)=>{
+  // 判断url中是否带有 /my/ 如果有则是私有路径 带上heder token
+  let header = {...params.header} // 先接收原有的请求头信息
+  if(params.url.includes("/my/")){
+    // 拼接header 带上token
+    header['Authorization'] = wx.getStorageSync("token")
+  }
+
   ajaxTimes ++
   //显示正在加载图标
   wx.showLoading({
@@ -13,12 +20,12 @@ export const request = (params)=>{
     mask:true
   })
 
-
   // 公共接口
   let prefixUrl = 'https://api-hmugo-web.itheima.net/api/public/v1'
   return new Promise((resolve,reject)=>{
     wx.request({
       ...params,
+      header:header,
       url: prefixUrl + params.url,
       success:(res)=>{
         resolve(res)
