@@ -1,5 +1,5 @@
 <view class="search_input">
-    <navigator  open-type="navigate">
+    <navigator  open-type="navigate" url = "/pages/search/index">
         <text>搜索</text>
     </navigator>
 </view>
