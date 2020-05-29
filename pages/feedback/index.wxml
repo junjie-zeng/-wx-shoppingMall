@@ -9,18 +9,23 @@
         <text >其他</text>
     </view>
     <view class="fb_content">
-        <textarea placeholder="请描述您的问题"></textarea>
+        <textarea value = "{{textVal}}" bindinput = "handleTextInput" placeholder="请描述您的问题"></textarea>
         <view class="fb_tool">
-            <button >+</button>
-            
-            <view class="up_img_item"><UpImg></UpImg></view>
-            <view class="up_img_item"><UpImg></UpImg></view>
-            <view class="up_img_item"><UpImg></UpImg></view>
+            <button bindtap = "handleTabsItemChange">+</button>
+            <view class="up_img_item" 
+            wx:for = "{{chooseImage}}" 
+            wx:key = "*this"
+            bindtap = "handleRemoveImg"
+            data-index = "{{index}}"
+            >
+                <!-- 组件通信 -->
+                <UpImg src = "{{item}}"></UpImg>
+            </view>
         </view>
         
     </view>
     <view class="form_btn_wrap">
-            <button  type="warn">
+            <button  type="warn" bindtap = "handleFormSubmit">
                 <icon type="success_no_circle" size="23" color="white"/>
                 提交</button>
         </view>
