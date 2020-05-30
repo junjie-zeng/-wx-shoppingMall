@@ -68,7 +68,8 @@ Page({
    */
   onLoad: function (options) {
     // 将canid保存在全局的参数中
-    this.QueryParams.cid = options.catId
+    this.QueryParams.cid = options.catId || ''
+    this.QueryParams.query = options.query || ''
     //console.log(options)
     // 调用
     this._getGoodList()

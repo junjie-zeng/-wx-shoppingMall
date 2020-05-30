@@ -32,9 +32,11 @@ Page({
     request({
       url:'/home/swiperdata'
     }).then((res)=>{
-      //console.log(res)
+      let swiperList = res.data.message
+      // 跳转路径处理
+      swiperList.forEach(v=>v.navigator_url =  `/pages/goods_detail/index?${v.navigator_url.substring(v.navigator_url.indexOf("?")+1)}`)
       this.setData({
-        swiperList:res.data.message
+        swiperList
       })
       
     })
@@ -55,8 +57,15 @@ Page({
     request({
       url:'/home/floordata'
     }).then((res)=>{
+      let  floorList = res.data.message
+      floorList.forEach(item=>{
+        item.product_list.forEach(item2=>{
+          // 跳转路径处理
+          item2.navigator_url = `/pages/goods_list/index?${item2.navigator_url.substring(item2.navigator_url.indexOf("?")+1)}`
+        })
+      })
       this.setData({
-        floorList:res.data.message
+        floorList
       })
     })
   }
