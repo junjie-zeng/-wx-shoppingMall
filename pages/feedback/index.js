@@ -123,24 +123,61 @@ Page({
     }
     // 3. 模拟将图片上传到专门的服务器
     // 上传文件的api不支持多个文件同时上传，（解决方法：遍历数组挨个上传）
-    // chooseImage.forEach((v,i)=>{
-    //   //UploadImags
-    //   wx.uploadFile({
-    //       // 服务器地址
-    //       url: 'https://images/ac.cn/Home/Index/UploadAction/',
-    //       // 要上传的路径
-    //       filePath: v,
-    //       // 上传文件的名称，后台获取文件 file
-    //       name: 'file',
-    //       // 上传文件 顺带的文本信息
-    //       formData: {},
-    //       success: (result) => {
-    //         console.log(result)
-    //       }
-    //     });
-          
-         console.log(textVal)
+    // 显示正在等待图标
+    wx.showLoading({
+      title:'正在上传中',
+      mask:true
+    })
+    
+    // 判断有没有需要上传的图片数组
+    if(chooseImage.length !=0){
+
       
-    // })
+
+      // chooseImage.forEach((v,i)=>{
+      //   //UploadImags
+      //   wx.uploadFile({
+      //       // 服务器地址
+      //       url: 'https://images/ac.cn/Home/Index/UploadAction/',
+      //       // 要上传的路径
+      //       filePath: v,
+      //       // 上传文件的名称，后台获取文件 file
+      //       name: 'file',
+      //       // 上传文件 顺带的文本信息
+      //       formData: {},
+      //       success: (result) => {
+      //         let url = JSON.parse(result.data).url
+      //         this.UploadImags.push(url)
+      //         // 所有的图片都上传完毕了才触发
+      //         if(i==chooseImage.length-1){
+                // 上传成功后关闭上传提示
+                wx.hideLoading()
+                console.log("本的内容和外网的图片提交到后台")
+                // 提交都成功了
+                console.log("提交成功")
+                // 重置页面
+                this.setData({
+                    textVal:"",
+                    chooseImage:[]
+                })
+                // 返回上一页
+                wx.navigateBack({
+                  delta:1
+                })
+      //         }
+              
+      //       }
+      //     });
+          
+      // })
+
+    }else{
+      wx.hideLoading()
+      console.log("提交了文本")
+      // 返回上一页
+      wx.navigateBack({
+        delta:1
+      })
+    }
   }
 })
