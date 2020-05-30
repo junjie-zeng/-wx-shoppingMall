@@ -32,7 +32,7 @@
         },
         {
           "pagePath": "pages/category/index",
-          "text": "类别",
+          "text": "分类",
           "iconPath": "style/img/_category.png",
           "selectedIconPath": "style/img/category.png"
         },
