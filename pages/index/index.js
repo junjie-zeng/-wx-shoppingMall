@@ -26,6 +26,11 @@ Page({
     this.getNavList()
     this.getFloorList()
     //console.log(this.data)
+
+    // test selectComponent
+    let searchInput = this.selectComponent("#searchInput")
+    // 执行组件中的方法
+    console.log(searchInput.test())
   },
   // 轮播图数据请求
   getSwiperList(){

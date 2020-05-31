@@ -1,7 +1,7 @@
 <view>
 <!-- 首页
   <view class="iconfont icon-tubiao14"></view> -->
-  <searchInput/>
+  <searchInput id = "searchInput"/>
   <!-- 轮播图 -->
   <!--
     注意：
